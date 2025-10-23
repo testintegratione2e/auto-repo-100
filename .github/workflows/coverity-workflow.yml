@@ -34,3 +34,4 @@ jobs:
           coverity_passphrase: ${{ secrets.COVERITY_PASSPHRASE }}
           ### Configuration if Bridge diagnostic files needs to be uploaded
           include_diagnostics: true
+           coverity_prComment_enabled: true
