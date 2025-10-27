@@ -24,7 +24,7 @@ permissions:
   security-events: write        # Required to upload SARIF results to GitHub Security
 jobs:
   polaris:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
@@ -38,6 +38,8 @@ jobs:
           polaris_access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
           ### ASSESSMENT TYPES
           polaris_assessment_types: SAST,SCA  # Comma-separated list: SAST,SCA,DAST
+          ### Configuration if Bridge diagnostic files needs to be uploaded
+          include_diagnostics: true
           ### GITHUB TOKEN
           github_token: ${{ secrets.GITHUB_TOKEN }}  # Required when PR comments or sarif reports enabled
           polaris_prComment_enabled: true
@@ -51,6 +53,3 @@ jobs:
 
           ### Mark build status if policy violating issues are found
           # mark_build_status: failure # Set to success, failure, or skip
-
-          ### Uncomment below configuration if Bridge diagnostic files needs to be uploaded
-          # include_diagnostics: false
